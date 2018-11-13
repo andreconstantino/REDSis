@@ -147,7 +147,7 @@ public class FrameCadastroRED extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnCadastrarNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnCadastrarNovoActionPerformed
-        JPanel panel = new PanelCadastrarAluno();
+        JPanel panel = new PanelCadastrarRED();
         this.setContentPane(panel); 
         this.setSize(this.getPreferredSize());
     }//GEN-LAST:event_mnCadastrarNovoActionPerformed

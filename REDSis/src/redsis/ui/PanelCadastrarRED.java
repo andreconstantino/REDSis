@@ -11,12 +11,12 @@ import javax.swing.*;
  *
  * @author Andre
  */
-public class PanelCadastrarAluno extends javax.swing.JPanel {
+public class PanelCadastrarRED extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelCadastroUsuario
      */
-    public PanelCadastrarAluno() {
+    public PanelCadastrarRED() {
         initComponents();
     }
 
