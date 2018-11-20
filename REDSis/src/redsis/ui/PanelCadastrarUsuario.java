@@ -6,13 +6,15 @@
 package redsis.ui;
 
 import javax.swing.*;
+import redsis.controller.UsuarioController;
+import redsis.model.Usuario;
 
 /**
  *
  * @author Andre
  */
 public class PanelCadastrarUsuario extends javax.swing.JPanel {
-
+     UsuarioController uController = new UsuarioController();
     /**
      * Creates new form PanelCadastroUsuario
      */
@@ -145,17 +147,45 @@ public class PanelCadastrarUsuario extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-
+        
+        if(!tfNome.getText().equals("") && !tfProntuario.getText().equals(""))
+        {
+                                    
+            if(new String(tfSenha.getPassword()).equals(new String(tfSenhaRepetir.getPassword())))
+            {
+                Usuario u = new Usuario();
+                u.setNome(tfNome.getText());
+                u.setProntuario(tfProntuario.getText());
+                u.setSenha(new String(tfSenha.getPassword()));
+                
+                uController.inserir(u);                
+                JOptionPane.showMessageDialog(lbNome, "Inserido com sucesso");
+                limparCampos();                        
+                            
+            }else{
+                JOptionPane.showMessageDialog(lbNome,"Senhas diferentes");
+            }                                  
+        }else{
+            JOptionPane.showMessageDialog(null,"Possui campos vazios");
+        }
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-        
+        this.setVisible(false);
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
         // TODO add your handling code here:
+        limparCampos();        
     }//GEN-LAST:event_btLimparActionPerformed
-
+   
+    public void limparCampos()
+    {
+        tfNome.setText("");
+        tfSenha.setText("");
+        tfSenhaRepetir.setText("");
+        tfProntuario.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCadastrar;
