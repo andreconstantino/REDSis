@@ -6,18 +6,23 @@
 package redsis.ui;
 
 import javax.swing.*;
+import redsis.controller.UsuarioController;
+import redsis.model.Sessao;
 
 /**
  *
  * @author Andre
  */
 public class PanelAlterarSenha extends javax.swing.JPanel {
-
+    UsuarioController uDAO = new UsuarioController();
     /**
      * Creates new form PanelCadastroUsuario
      */
     public PanelAlterarSenha() {
         initComponents();
+        
+        tfNome.setText(Sessao.usuarioLogado.getNome());
+        tfProntuario.setText(Sessao.usuarioLogado.getProntuario());
     }
 
     /**
@@ -161,17 +166,43 @@ public class PanelAlterarSenha extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
-
+ 
+         if(Sessao.usuarioLogado.getSenha().equals(new String(tfSenha.getPassword())))
+         {
+             System.out.println(tfNovaSenha.getPassword()+" -- "+ tfSenhaRepetir.getPassword());
+            if(new String(tfNovaSenha.getPassword()).equals(new String(tfSenhaRepetir.getPassword()))) 
+            {                
+                Sessao.usuarioLogado.setSenha(new String(tfNovaSenha.getPassword()));
+                uDAO.alterar(Sessao.usuarioLogado);
+                JOptionPane.showMessageDialog(lbNome, "Senhas Alteradas!");
+                menuPrincipal();
+            }else{
+                JOptionPane.showMessageDialog(lbNome, "Senhas diferentes, repita a senha corretamente");
+            }
+         }else{
+            JOptionPane.showMessageDialog(lbNome, "Senha atual inválida");
+         }
     }//GEN-LAST:event_btAlterarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-        
+        menuPrincipal();
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
         // TODO add your handling code here:
+        limparCampos();
     }//GEN-LAST:event_btLimparActionPerformed
-
+    
+    private void menuPrincipal()
+    {
+        this.setVisible(false);          
+    }
+    private void limparCampos()
+    {
+        tfSenha.setText("");
+        tfNovaSenha.setText("");
+        tfSenhaRepetir.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAlterar;
