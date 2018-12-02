@@ -17,3 +17,22 @@ create table usuarios(
     prontuario varchar(10) not null,
     senha varchar(30) not null
 );
+
+create table alunos(
+    id int auto_increment primary key ,
+    nome varchar(150) not null,
+    prontuario varchar(20) not null,
+    data_inicio date not null,
+    data_fim date not null
+);
+
+create table disciplinas(
+  id int auto_increment primary key ,
+  nome varchar(30) not null,
+  sigla varchar(10) not null,
+  professor varchar(30) not null,
+  semestre varchar(1) not null,
+  ano varchar(4),
+  aluno_id int not null,
+   foreign key(aluno_id) REFERENCES alunos(id);
+);
