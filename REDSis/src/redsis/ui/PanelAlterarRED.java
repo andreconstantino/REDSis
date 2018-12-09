@@ -6,20 +6,39 @@
 package redsis.ui;
 
 import javax.swing.*;
+import redsis.controller.AlunoController;
+import redsis.model.Aluno;
+import redsis.model.Disciplina;
 
 /**
  *
  * @author Andre
  */
-public class PanelAlterarRED extends javax.swing.JPanel {
-
+public class PanelAlterarRED extends javax.swing.JPanel implements ICadastroAluno{
+    Aluno aluno;
+    AlunoController aController = new AlunoController();
     /**
      * Creates new form PanelCadastroUsuario
      */
     public PanelAlterarRED() {
         initComponents();
     }
+    
+    public PanelAlterarRED(Aluno a) {
+        initComponents();
+        aluno = a;
+        this.tfNome.setText(a.getNome());
+        this.tfProntuario.setText(a.getProntuario());
+        this.tfDataInicio.setText(a.getDataInicioFormatada());
+        this.tfDataFim.setText(a.getDataFimFormatado());
+        listarDisciplinas();
+    }
 
+    public void listarDisciplinas()
+    {
+        DisciplinaTabelaModelo modelo = new DisciplinaTabelaModelo(aluno.getDisciplinas());
+        tbDisciplinas.setModel(modelo);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -198,10 +217,21 @@ public class PanelAlterarRED extends javax.swing.JPanel {
 
     private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
         // TODO add your handling code here:
+        if(aluno != null)
+        {
+            aController.alterar(aluno);
+            JOptionPane.showMessageDialog(this, "Alterado com sucesso!");
+            voltar();
+        }        
+        
     }//GEN-LAST:event_btAlterarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         // TODO add your handling code here:
+        if(aluno != null)
+        {
+            voltar();
+        }        
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
@@ -209,14 +239,30 @@ public class PanelAlterarRED extends javax.swing.JPanel {
     }//GEN-LAST:event_btLimparActionPerformed
 
     private void btAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarActionPerformed
-        JFrame frame = new FrameCadastrarDisciplina();
+        JFrame frame = new FrameCadastrarDisciplina(this);
         frame.setVisible(true);
     }//GEN-LAST:event_btAdicionarActionPerformed
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
         // TODO add your handling code here:
+        int linhaSelecionada = tbDisciplinas.getSelectedRow();
+        if(linhaSelecionada >= 0)
+        {
+            aController.removerDisciplina(aluno.getDisciplina(linhaSelecionada).getId());
+            aluno.removerDisciplina(linhaSelecionada);
+            listarDisciplinas();
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione uma linha!");
+        }
+        
     }//GEN-LAST:event_btRemoverActionPerformed
-
+    
+    public void voltar()
+    {
+        FrameCadastroRED f = (FrameCadastroRED) SwingUtilities.getRoot(this);
+        f.setContentPane(new PanelVisualizarREDs());
+        f.pack();                           
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAdicionar;
@@ -237,4 +283,10 @@ public class PanelAlterarRED extends javax.swing.JPanel {
     private javax.swing.JTextField tfNome;
     private javax.swing.JTextField tfProntuario;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void addDisciplina(Disciplina d) {
+        aluno.setDisciplinas(d);
+        listarDisciplinas();
+    }
 }

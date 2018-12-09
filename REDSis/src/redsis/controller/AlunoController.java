@@ -5,6 +5,7 @@
  */
 package redsis.controller;
 
+import java.util.List;
 import redsis.infra.AlunoDAO;
 import redsis.model.Aluno;
 
@@ -18,5 +19,26 @@ public class AlunoController {
    public void inseir(Aluno a) 
    {
        aDAO.inserir(a);
+   }
+   
+   
+   public List<Aluno> obterTodos()
+   {
+       return aDAO.obterTodos();
+   }
+   
+   public void remover(int codigo)
+   {
+        aDAO.remover(codigo);
+   }
+   
+   public void alterar(Aluno a)
+   {
+       aDAO.alterar(a);
+   }
+   
+   public void removerDisciplina(int codDisciplina)
+   {
+       aDAO.removerDisciplina(codDisciplina);
    }
 }

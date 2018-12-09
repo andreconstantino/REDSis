@@ -7,12 +7,13 @@ package redsis.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
  * @author David
  */
-public class Aluno {
+public class Aluno{
     private int id;
     private String nome;
     private String prontuario;
@@ -76,4 +77,32 @@ public class Aluno {
     public void setDisciplinas(Disciplina disciplinas) {
         this.disciplinas.add(disciplinas);
     }    
+    
+    public void setTodasDisciplinas(List disciplinas)
+    {
+        this.disciplinas = disciplinas;
+    }
+    
+    public Disciplina getDisciplina(int index)
+    {
+        return this.disciplinas.get(index);
+    }
+    
+    public void removerDisciplina(int index)
+    {
+        this.disciplinas.remove(index);
+    }
+    
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Aluno) {
+            Aluno outro = (Aluno) obj;
+            if(this.getProntuario().equals(outro.getProntuario()))
+                return true;
+        }
+        return false;
+    }
+    
+    
 }

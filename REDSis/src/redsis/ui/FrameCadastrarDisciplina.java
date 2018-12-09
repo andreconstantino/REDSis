@@ -13,7 +13,7 @@ import redsis.model.Disciplina;
  * @author Andre
  */
 public class FrameCadastrarDisciplina extends javax.swing.JFrame {
-    PanelCadastrarRED panelCadastrarRED;
+    ICadastroAluno panelCadastrarRED;
     /**
      * Creates new form FrameCadastroResponsavel
      */
@@ -21,7 +21,7 @@ public class FrameCadastrarDisciplina extends javax.swing.JFrame {
         initComponents();
     }
     
-    public FrameCadastrarDisciplina(PanelCadastrarRED pcr) {
+    public FrameCadastrarDisciplina(ICadastroAluno pcr) {
         initComponents();
         panelCadastrarRED = pcr;
     }

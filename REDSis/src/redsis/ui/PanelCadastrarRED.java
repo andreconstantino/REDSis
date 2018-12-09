@@ -14,7 +14,7 @@ import redsis.model.Disciplina;
  *
  * @author Andre
  */
-public class PanelCadastrarRED extends javax.swing.JPanel {
+public class PanelCadastrarRED extends javax.swing.JPanel implements ICadastroAluno {
     Aluno aluno = new Aluno();
     AlunoController aController = new AlunoController();
     /**
@@ -205,14 +205,17 @@ public class PanelCadastrarRED extends javax.swing.JPanel {
         aluno.setDataFim(tfDataFim.getText());
         aController.inseir(aluno);
         JOptionPane.showMessageDialog(btRemover, "Cadastrado com sucesso!");
+        limpar();
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
         // TODO add your handling code here:
+        limpar();
     }//GEN-LAST:event_btLimparActionPerformed
 
     private void btAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarActionPerformed
@@ -232,10 +235,21 @@ public class PanelCadastrarRED extends javax.swing.JPanel {
         tbDisciplinas.setModel(modelo);
     }
     
+    public void limpar()
+    {
+        tfNome.setText("");
+        tfProntuario.setText("");
+        tfDataInicio.setText("");
+        tfDataFim.setText("");
+    }
+    
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
         // TODO add your handling code here:
+        int linhaSelecionada = tbDisciplinas.getSelectedRow();
+        aluno.removerDisciplina(linhaSelecionada);
+        listarDisciplinas();
     }//GEN-LAST:event_btRemoverActionPerformed
-
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAdicionar;

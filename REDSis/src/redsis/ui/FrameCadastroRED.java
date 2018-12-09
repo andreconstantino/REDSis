@@ -186,6 +186,8 @@ public class FrameCadastroRED extends javax.swing.JFrame {
 
     private void mnRelatorioREDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnRelatorioREDActionPerformed
         // TODO add your handling code here:
+        RelatorioHelper rh = new RelatorioHelper();
+        rh.relatorioAlunos();
     }//GEN-LAST:event_mnRelatorioREDActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
