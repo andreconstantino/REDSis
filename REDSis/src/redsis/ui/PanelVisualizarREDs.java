@@ -5,17 +5,29 @@
  */
 package redsis.ui;
 
+import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import redsis.controller.AlunoController;
+import redsis.model.Aluno;
+
 /**
  *
  * @author Andre
  */
 public class PanelVisualizarREDs extends javax.swing.JPanel {
-
+    AlunoController aController = new AlunoController();
+    List<Aluno> alunos          = new ArrayList();
     /**
      * Creates new form PanelVisualizarAlunos
      */
     public PanelVisualizarREDs() {
-        initComponents();
+        initComponents();                
+        alunos                    = aController.obterTodos();  
+        listarAlunos();
     }
 
     /**
@@ -89,34 +101,34 @@ public class PanelVisualizarREDs extends javax.swing.JPanel {
 
         tbAlunos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Prontuário", "Nome", "Data de início", "Data de fim"
+
             }
         ));
         jsBarraRolagem.setViewportView(tbAlunos);
@@ -182,29 +194,65 @@ public class PanelVisualizarREDs extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btOrdenarProntuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOrdenarProntuarioActionPerformed
-
+        CompararPorProntuario comp = new CompararPorProntuario();
+        alunos.sort(comp);
+        listarAlunos();
     }//GEN-LAST:event_btOrdenarProntuarioActionPerformed
 
     private void btOrdenarDataInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOrdenarDataInicioActionPerformed
-
+        CompararPorData comp = new CompararPorData();
+        alunos.sort(comp);
+        listarAlunos();
     }//GEN-LAST:event_btOrdenarDataInicioActionPerformed
 
     private void btOrdenarNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOrdenarNomeActionPerformed
-
+        CompararAlunoPorNome comp = new CompararAlunoPorNome();
+        alunos.sort(comp);
+        listarAlunos();
     }//GEN-LAST:event_btOrdenarNomeActionPerformed
 
     private void btAlterarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarAlunoActionPerformed
-
+        int linhaSelecionada = tbAlunos.getSelectedRow();
+        if(linhaSelecionada >= 0)
+        {
+            Aluno aluno = alunos.get(linhaSelecionada);        
+            FrameCadastroRED f = (FrameCadastroRED) SwingUtilities.getRoot(this);
+            f.setContentPane(new PanelAlterarRED(aluno));
+            f.pack();                        
+        }else{
+            JOptionPane.showMessageDialog(this, "Selecione uma linha!");
+        }
+        
+        
     }//GEN-LAST:event_btAlterarAlunoActionPerformed
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
-
+        
+        int row = tbAlunos.getSelectedRow();
+        Aluno a = alunos.get(row);
+        aController.remover(a.getId());
+        alunos.remove(row);        
+        listarAlunos();
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void btProcurarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProcurarAlunoActionPerformed
-
+        
+        Aluno a = new Aluno();
+        a.setProntuario(tfProntuarioProcurar.getText());
+        int posicao = alunos.indexOf(a);
+        if(posicao < 0) {
+            JOptionPane.showMessageDialog(this, 
+                    "Não existe produto com o código informado.");
+        } else {
+            tbAlunos.setRowSelectionInterval(posicao, posicao);
+        }
     }//GEN-LAST:event_btProcurarAlunoActionPerformed
-
+    
+    public void listarAlunos()
+    {                                 
+        AlunoTabelaModelo modelo = new AlunoTabelaModelo(alunos);        
+        tbAlunos.setModel(modelo);        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAlterarAluno;

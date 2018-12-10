@@ -5,17 +5,25 @@
  */
 package redsis.ui;
 
+import javax.swing.JOptionPane;
+import redsis.model.Disciplina;
+
 /**
  *
  * @author Andre
  */
 public class FrameCadastrarDisciplina extends javax.swing.JFrame {
-
+    ICadastroAluno panelCadastrarRED;
     /**
      * Creates new form FrameCadastroResponsavel
      */
     public FrameCadastrarDisciplina() {
         initComponents();
+    }
+    
+    public FrameCadastrarDisciplina(ICadastroAluno pcr) {
+        initComponents();
+        panelCadastrarRED = pcr;
     }
 
     /**
@@ -35,14 +43,14 @@ public class FrameCadastrarDisciplina extends javax.swing.JFrame {
         lbSigla = new javax.swing.JLabel();
         tfNome = new javax.swing.JTextField();
         lbProfessor = new javax.swing.JLabel();
-        tfSigla = new javax.swing.JFormattedTextField();
         btInserir = new javax.swing.JButton();
         lbSemestre = new javax.swing.JLabel();
         rbPrimeiroSemestre = new javax.swing.JRadioButton();
         rbSegundoSemestre = new javax.swing.JRadioButton();
-        tfProfessor = new javax.swing.JFormattedTextField();
         lbAno = new javax.swing.JLabel();
         tfAno = new javax.swing.JFormattedTextField();
+        tfSigla = new javax.swing.JTextField();
+        tfProfessor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,8 +78,6 @@ public class FrameCadastrarDisciplina extends javax.swing.JFrame {
 
         lbProfessor.setText("Professor:");
 
-        tfSigla.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-
         btInserir.setText("Inserir");
         btInserir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,8 +97,6 @@ public class FrameCadastrarDisciplina extends javax.swing.JFrame {
 
         grupoSemestre.add(rbSegundoSemestre);
         rbSegundoSemestre.setText("Segundo");
-
-        tfProfessor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
 
         lbAno.setText("Ano:");
 
@@ -137,8 +141,9 @@ public class FrameCadastrarDisciplina extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(27, 27, 27)
                                     .addComponent(lbProfessor)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(tfProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(tfProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(4, 4, 4))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addGap(44, 44, 44)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -146,8 +151,8 @@ public class FrameCadastrarDisciplina extends javax.swing.JFrame {
                                         .addComponent(lbNome))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(tfSigla, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tfSigla, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -165,7 +170,7 @@ public class FrameCadastrarDisciplina extends javax.swing.JFrame {
                     .addComponent(lbSigla)
                     .addComponent(tfSigla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbProfessor)
                     .addComponent(tfProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -193,13 +198,41 @@ public class FrameCadastrarDisciplina extends javax.swing.JFrame {
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
-        // TODO add your handling code here:
+        limpar();
     }//GEN-LAST:event_btLimparActionPerformed
 
     private void btInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInserirActionPerformed
-
+        Disciplina d = new Disciplina();
+        d.setNome(tfNome.getText());
+        d.setProfessor(tfProfessor.getText());                
+        d.setSigla(tfSigla.getText());      
+        d.setAno(tfAno.getText());
+        
+        if(rbPrimeiroSemestre.isSelected())
+        {
+            d.setSemestre("1");
+        }
+        
+        if(rbSegundoSemestre.isSelected())
+        {
+            d.setSemestre("2");
+        }
+        
+        panelCadastrarRED.addDisciplina(d);                
+        JOptionPane.showMessageDialog(rootPane, "Adicionado com Sucesso!");
+        limpar();
     }//GEN-LAST:event_btInserirActionPerformed
-
+    
+    public void limpar()
+    {
+        tfNome.setText("");
+        tfProfessor.setText("");
+        tfSigla.setText("");
+        tfAno.setText("");
+        rbSegundoSemestre.setSelected(false);
+        rbPrimeiroSemestre.setSelected(false);
+        
+    }
     private void rbPrimeiroSemestreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPrimeiroSemestreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbPrimeiroSemestreActionPerformed
@@ -219,7 +252,7 @@ public class FrameCadastrarDisciplina extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbSegundoSemestre;
     private javax.swing.JFormattedTextField tfAno;
     private javax.swing.JTextField tfNome;
-    private javax.swing.JFormattedTextField tfProfessor;
-    private javax.swing.JFormattedTextField tfSigla;
+    private javax.swing.JTextField tfProfessor;
+    private javax.swing.JTextField tfSigla;
     // End of variables declaration//GEN-END:variables
 }

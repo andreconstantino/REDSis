@@ -65,8 +65,9 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                   <Component id="lbProfessor" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="tfProfessor" min="-2" pref="264" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="tfProfessor" min="-2" pref="266" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
@@ -76,8 +77,8 @@
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="tfSigla" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
                                       <Component id="tfNome" min="-2" pref="266" max="-2" attributes="0"/>
+                                      <Component id="tfSigla" min="-2" pref="266" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -105,9 +106,9 @@
                   <Component id="tfSigla" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lbProfessor" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfProfessor" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lbProfessor" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfProfessor" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -174,13 +175,6 @@
         <Property name="text" type="java.lang.String" value="Professor:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="tfSigla">
-      <Properties>
-        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format subtype="0" type="1"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="btInserir">
       <Properties>
         <Property name="text" type="java.lang.String" value="Inserir"/>
@@ -213,13 +207,6 @@
         <Property name="text" type="java.lang.String" value="Segundo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="tfProfessor">
-      <Properties>
-        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format subtype="0" type="1"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lbAno">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ano:"/>
@@ -231,6 +218,10 @@
           <Format format="####" subtype="-1" type="5"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfSigla">
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfProfessor">
     </Component>
   </SubComponents>
 </Form>

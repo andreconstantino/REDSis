@@ -163,12 +163,7 @@
         <Component class="javax.swing.JTable" name="tbAlunos">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="25">
-                <Column editable="true" title="Prontu&#xe1;rio" type="java.lang.Object"/>
-                <Column editable="true" title="Nome" type="java.lang.Object"/>
-                <Column editable="true" title="Data de in&#xed;cio" type="java.lang.Object"/>
-                <Column editable="true" title="Data de fim" type="java.lang.Object"/>
-              </Table>
+              <Table columnCount="0" rowCount="25"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
