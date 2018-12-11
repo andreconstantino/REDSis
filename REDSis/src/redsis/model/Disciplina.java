@@ -16,7 +16,18 @@ public class Disciplina {
     private String professor;
     private String semestre;
     private String ano;
-
+    private Aluno aluno;
+    
+    public void setAluno(Aluno a)
+    {
+        this.aluno = a;
+    }
+    
+    public Aluno getAluno()
+    {
+        return this.aluno;
+    }
+    
     public int getId() {
         return id;
     }

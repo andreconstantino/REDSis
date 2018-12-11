@@ -149,6 +149,38 @@ public class AlunoDAO {
         
     }
     
+    public List<Disciplina> obterTodasDisciplinas()
+    {
+        List<Disciplina> disciplinas = new ArrayList();
+        try {
+            Connection con = ConnectionFactory.obterConexao();
+            PreparedStatement stm = con.prepareStatement("Select disciplinas.*, alunos.nome as aluno, alunos.prontuario, alunos.data_inicio, alunos.data_fim from disciplinas join alunos on disciplinas.aluno_id = alunos.id");   
+            ResultSet rs = stm.executeQuery();            
+            
+            while(rs.next())
+            {
+                Disciplina d = new Disciplina();                
+                d.setNome(rs.getString("nome"));                
+                d.setProfessor(rs.getString("professor"));
+                d.setSemestre(rs.getString("semestre"));
+                d.setAno(rs.getString("ano"));
+                Aluno a = new Aluno();
+                a.setNome(rs.getString("aluno"));
+                d.setAluno(a);
+                
+                disciplinas.add(d);
+                
+            }            
+            
+            return disciplinas;
+        }catch(SQLException ex) {
+            Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return disciplinas;
+        
+    }
+    
     
     public void remover(int codigo)
     {
@@ -165,8 +197,7 @@ public class AlunoDAO {
     public void alterar(Aluno a) {
         try {
             Connection con = ConnectionFactory.obterConexao();
-            PreparedStatement stm = con.prepareStatement("UPDATE alunos SET nome = ?, prontuario = ?, data_inicio = ?, data_fim = ? WHERE id = ?");               
-            
+            PreparedStatement stm = con.prepareStatement("UPDATE alunos SET nome = ?, prontuario = ?, data_inicio = ?, data_fim = ? WHERE id = ?");                           
             stm.setString(1, a.getNome());
             stm.setString(2, a.getProntuario());
             stm.setString(3, a.getDataInicio());

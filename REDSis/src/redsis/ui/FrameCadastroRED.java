@@ -89,6 +89,11 @@ public class FrameCadastroRED extends javax.swing.JFrame {
         mnRelatorios.add(mnRelatorioRED);
 
         mnRelatorioREDAluno.setText("Relatório de alunos e REDs");
+        mnRelatorioREDAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnRelatorioREDAlunoActionPerformed(evt);
+            }
+        });
         mnRelatorios.add(mnRelatorioREDAluno);
 
         bmBarraMenu.add(mnRelatorios);
@@ -189,6 +194,12 @@ public class FrameCadastroRED extends javax.swing.JFrame {
         RelatorioHelper rh = new RelatorioHelper();
         rh.relatorioAlunos();
     }//GEN-LAST:event_mnRelatorioREDActionPerformed
+
+    private void mnRelatorioREDAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnRelatorioREDAlunoActionPerformed
+        // TODO add your handling code here:
+        RelatorioHelper rh = new RelatorioHelper();
+        rh.relatorioDisciplinas();
+    }//GEN-LAST:event_mnRelatorioREDAlunoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar bmBarraMenu;

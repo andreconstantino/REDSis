@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_disciplinas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="764a17fb-2cf2-4028-974a-12e5af16b64b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nome" class="java.lang.String"/>
+	<field name="aluno.nome" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="50" y="20" width="430" height="30" uuid="bbf0edca-1cd2-4a01-acce-652c2a9f1fb3"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Relatório Disciplinas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="180" height="20" uuid="775f0dd5-f1a5-445d-8dac-1f7d5c4c6405">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="01aae157-4a07-4492-883f-088c573bf94b"/>
+				</reportElement>
+				<text><![CDATA[nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="0" width="200" height="20" uuid="5970b604-f587-4261-a492-18e24a0c92d0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9171930c-ece8-4359-a5ff-93ffa06f7f79"/>
+				</reportElement>
+				<text><![CDATA[Aluno]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="180" height="20" uuid="3b83b0c6-ac81-4ddf-a998-c0005b0e08dc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="01aae157-4a07-4492-883f-088c573bf94b"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="200" height="20" uuid="0f496983-cc89-4118-8aac-5e79489853aa">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9171930c-ece8-4359-a5ff-93ffa06f7f79"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{aluno.nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

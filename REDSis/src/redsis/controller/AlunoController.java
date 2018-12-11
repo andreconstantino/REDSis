@@ -8,6 +8,7 @@ package redsis.controller;
 import java.util.List;
 import redsis.infra.AlunoDAO;
 import redsis.model.Aluno;
+import redsis.model.Disciplina;
 
 /**
  *
@@ -40,5 +41,10 @@ public class AlunoController {
    public void removerDisciplina(int codDisciplina)
    {
        aDAO.removerDisciplina(codDisciplina);
+   }
+   
+   public List<Disciplina> obterDisciplinas()
+   {
+       return aDAO.obterTodasDisciplinas();
    }
 }

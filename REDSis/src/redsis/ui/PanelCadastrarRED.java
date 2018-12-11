@@ -241,13 +241,15 @@ public class PanelCadastrarRED extends javax.swing.JPanel implements ICadastroAl
         tfProntuario.setText("");
         tfDataInicio.setText("");
         tfDataFim.setText("");
+        aluno = new Aluno();
+        listarDisciplinas();
     }
     
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
         // TODO add your handling code here:
         int linhaSelecionada = tbDisciplinas.getSelectedRow();
         aluno.removerDisciplina(linhaSelecionada);
-        listarDisciplinas();
+        listarDisciplinas();        
     }//GEN-LAST:event_btRemoverActionPerformed
     
 

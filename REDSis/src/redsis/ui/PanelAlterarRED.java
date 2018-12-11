@@ -219,6 +219,10 @@ public class PanelAlterarRED extends javax.swing.JPanel implements ICadastroAlun
         // TODO add your handling code here:
         if(aluno != null)
         {
+            aluno.setNome(tfNome.getText());
+            aluno.setDataInicio(tfDataInicio.getText());
+            aluno.setDataFim(tfDataFim.getText());
+            aluno.setProntuario(tfProntuario.getText());
             aController.alterar(aluno);
             JOptionPane.showMessageDialog(this, "Alterado com sucesso!");
             voltar();

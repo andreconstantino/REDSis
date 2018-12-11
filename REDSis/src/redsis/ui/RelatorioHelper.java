@@ -56,4 +56,39 @@ public class RelatorioHelper {
             e.printStackTrace();
         }
     }
+    
+    public void relatorioDisciplinas()
+    {
+        try {
+
+        AlunoController pc = new AlunoController();
+
+        List beans = pc.obterDisciplinas();
+
+        HashMap<String, Object> params = new HashMap<String, Object>();
+
+        //Infoma que os dados estão em um conjunto de beans
+
+        JRBeanCollectionDataSource beanCollectionDataSource =  new JRBeanCollectionDataSource(beans);
+
+        //Encontra o layout do relatório
+
+         InputStream in = this.getClass().getClassLoader().getResourceAsStream("redsis/ui/relatorio_disciplinas.jrxml");
+
+         //Compila o layout               
+
+         JasperReport jasperReport = JasperCompileManager.compileReport(in);
+
+          //Gera o relatório com os dados dos objetos  
+
+         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, beanCollectionDataSource);
+
+         //Abre o visualizador do JasperReport
+
+         JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

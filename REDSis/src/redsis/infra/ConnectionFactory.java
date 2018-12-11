@@ -17,7 +17,7 @@ public class ConnectionFactory {
     private static final String DRIVER = "com.mysql.jdbc.Driver";
     private static final String URL    = "jdbc:mysql://localhost:3306/redsis";
     private static final String USER   = "root";
-    private static final String PASS   = "123"; // alterar senha.
+    private static final String PASS   = ""; // alterar senha.
     private static Connection con = null;
 
     public static Connection obterConexao() {
